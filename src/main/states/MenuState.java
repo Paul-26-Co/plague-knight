@@ -23,7 +23,6 @@ public class MenuState extends State
     public void render(Graphics g)
     {
         // TODO Auto-generated method stub
-
     }
 
 }

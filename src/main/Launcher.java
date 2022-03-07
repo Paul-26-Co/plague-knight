@@ -6,7 +6,6 @@ public class Launcher
     {
         Game game = new Game("Plague Knight", 800, 600);
         game.start();
-
     }
 
 }
