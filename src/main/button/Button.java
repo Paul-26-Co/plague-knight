@@ -1,11 +1,8 @@
 package main.button;
 
-import main.Game;
 import main.gfx.ImageLoader;
-import main.states.State;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class Button{
@@ -20,6 +17,7 @@ public class Button{
     }
 
     public Point getImagePos(){ return imagePos; }
+    public void setImagePos(Point imagePos){ this.imagePos = imagePos; }
     public Point getPos() {
         return pos;
     }
@@ -53,8 +51,11 @@ public class Button{
 
         this.imagePos = imagePos;
 //        "/assets/menu/menubuttons/menubuttons.png"
+
+//        Get Sprite sheet
         picture = ImageLoader.loadImage(path);
 
+//        Slice sprite through coordinates
         image = picture.getSubimage((int) imagePos.getX(), (int) imagePos.getY(), (int) imageSize.getX(), (int) imageSize.getY());
     }
 }

@@ -8,16 +8,21 @@ import java.util.Arrays;
 public class MouseManager implements MouseListener, MouseMotionListener
 {
     private boolean mouse[];
+
+    private boolean mouseInside;
+
     private int mouseX, mouseY;
 
     public MouseManager()
     {
         mouse = new boolean[256];
+
     }
 
     public void tick()
     {
         Arrays.fill(mouse, false);
+        mouseInside = false;
     }
 
     public boolean getMouseButtonState(int mbutton)
@@ -35,6 +40,8 @@ public class MouseManager implements MouseListener, MouseMotionListener
         return mouseY;
     }
 
+    public boolean isMouseInside() { return mouseInside; }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
@@ -49,9 +56,7 @@ public class MouseManager implements MouseListener, MouseMotionListener
 
         if(e.getButton() == MouseEvent.BUTTON3) {
             mouse[MouseEvent.BUTTON3] = true;
-
         }
-
     }
 
     @Override
@@ -61,7 +66,7 @@ public class MouseManager implements MouseListener, MouseMotionListener
     @Override
     public void mouseEntered(MouseEvent e) {
         // TODO Auto-generated method stub
-
+        mouseInside = true;
     }
 
     @Override
@@ -80,7 +85,6 @@ public class MouseManager implements MouseListener, MouseMotionListener
     public void mouseMoved(MouseEvent e) {
         mouseX = e.getX();
         mouseY = e.getY();
-
     }
 
 }
