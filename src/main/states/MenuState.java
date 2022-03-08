@@ -29,9 +29,9 @@ public class MenuState extends State
         exitButton = new Button(new Point(300, 490), new Point(180, 100));
 
 //        Coordinate in Photos
-        survivalButton.setTexture(new Point(0, 0), new Point(173, 87), path);
-        storyButton.setTexture(new Point(522, 0), new Point(173, 87), path);
-        exitButton.setTexture(new Point(1044, 0), new Point(173, 87), path);
+        survivalButton.loadTexture(new Point(0, 0), new Point(173, 87), path);
+        storyButton.loadTexture(new Point(522, 0), new Point(173, 87), path);
+        exitButton.loadTexture(new Point(1044, 0), new Point(173, 87), path);
     }
 
     @Override
@@ -68,23 +68,22 @@ public class MenuState extends State
         if((x <= butt.getSize().getX() + butt.getPos().getX() && x >=  butt.getPos().getX()) &&
                 (y <= butt.getSize().getY() + butt.getPos().getY() && y >= butt.getPos().getY())){
 
-            butt.setTexture(new Point((int) (butt.getImagePos().getX() + 174), 0), new Point(173, 87), path);
-
+                butt.setFrame(new Point((int) (butt.getImagePos().getX() + 174), 0), new Point(173, 87));
 //            If button clicked
             if(game.getMouseManager().getMouseButtonState(MouseEvent.BUTTON1)){
 //              Animate button
-                butt.setTexture(new Point((int) (butt.getImagePos().getX() + 175), 0), new Point(173, 87), path);
+
+                butt.setFrame(new Point((int) (butt.getImagePos().getX() + 174), 0), new Point(173, 87));
                 butt.setImagePos(getPos);
                 return true;
             }
-
             butt.setImagePos(getPos);
             return false;
         }
 
-//        butt.setImagePos(getPos);
 
-//        butt.setTexture(new Point((int) (butt.getImagePos().getX()), 0), new Point(173, 87), path);
+        butt.setFrame(new Point((int) (butt.getImagePos().getX()), 0), new Point(173, 87));
+        butt.setImagePos(getPos);
         return false;
     }
 }

@@ -47,7 +47,7 @@ public class Button{
     }
 
     //    This function is used to load menu buttons and cut the sprite sheet
-    public void setTexture(Point imagePos, Point imageSize, String path){
+    public void loadTexture(Point imagePos, Point imageSize, String path){
 
         this.imagePos = imagePos;
 //        "/assets/menu/menubuttons/menubuttons.png"
@@ -56,6 +56,12 @@ public class Button{
         picture = ImageLoader.loadImage(path);
 
 //        Slice sprite through coordinates
+        image = picture.getSubimage((int) imagePos.getX(), (int) imagePos.getY(), (int) imageSize.getX(), (int) imageSize.getY());
+    }
+    public void setFrame(Point imagePos, Point imageSize){
+        this.imagePos = imagePos;
+
+
         image = picture.getSubimage((int) imagePos.getX(), (int) imagePos.getY(), (int) imageSize.getX(), (int) imageSize.getY());
     }
 }
