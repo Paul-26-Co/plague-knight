@@ -66,7 +66,7 @@ public class MouseManager implements MouseListener, MouseMotionListener
     @Override
     public void mouseEntered(MouseEvent e) {
         // TODO Auto-generated method stub
-        mouseInside = true;
+//        mouseInside = true;
     }
 
     @Override

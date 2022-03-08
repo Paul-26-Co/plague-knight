@@ -8,13 +8,15 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import static java.lang.Thread.sleep;
+
 public class MenuState extends State
 {
     private Game game;
     private Button storyButton;
     private Button survivalButton;
     private Button exitButton;
-    private String path = "/assets/menu/menubuttons/menubuttons.png";
+    private String path = "/assets/menu/menubuttons/menubuttonsv3.png";
     // TODO Auto-generated method stub
 
 
@@ -27,26 +29,21 @@ public class MenuState extends State
         exitButton = new Button(new Point(300, 490), new Point(180, 100));
 
 //        Coordinate in Photos
-        survivalButton.setTexture(new Point(1, 1), new Point(174, 89), path);
-        storyButton.setTexture(new Point(348, 1), new Point(174, 89), path);
-        exitButton.setTexture(new Point(696, 1), new Point(174, 89), path);
+        survivalButton.setTexture(new Point(0, 0), new Point(173, 87), path);
+        storyButton.setTexture(new Point(522, 0), new Point(173, 87), path);
+        exitButton.setTexture(new Point(1044, 0), new Point(173, 87), path);
     }
 
     @Override
     public void tick() {
+        SurvivalMenuState survivalMenuState = new SurvivalMenuState();
         int x = game.getMouseManager().getMouseX();
         int y = game.getMouseManager().getMouseY();
-//        if(game.getMouseManager().getMouseButtonState(MouseEvent.BUTTON1)){
-//            if(isInside(x, y, storyButton, "Story") || isInside(x, y, survivalButton, "Survival") || isInside(x, y, exitButton, "Exit")){
-//                System.out.println("Inside");
-//            }
-//            else{
-//                System.out.println("outside");
-//            }
-//        }
-        if(game.getMouseManager().isMouseInside() || isInside(x, y, storyButton) || isInside(x, y, survivalButton) || isInside(x, y, exitButton)){
-            System.out.println("INSIDE");
+
+        if(isInside(x, y, storyButton) || isInside(x, y, survivalButton) || isInside(x, y, exitButton)){
+//            MenuState.setState(survivalMenuState);
         }
+
     }
 
     @Override
@@ -60,36 +57,34 @@ public class MenuState extends State
 
         g.drawImage(exitButton.getImage(), (int) exitButton.getPos().getX(), (int) exitButton.getPos().getY(),
                 (int) exitButton.getSize().getX(), (int) exitButton.getSize().getY(), null);
-
-
-
     }
 
 
     public boolean isInside(float x, float y, Button butt){
-        Point getPos = butt.getImagePos();
 
+        Point getPos = butt.getImagePos();
 //        x <= image.width + image.x && x >= image.x
 //        y <= image.width + image.y && y >= image.y
         if((x <= butt.getSize().getX() + butt.getPos().getX() && x >=  butt.getPos().getX()) &&
                 (y <= butt.getSize().getY() + butt.getPos().getY() && y >= butt.getPos().getY())){
-            if(game.getMouseManager().getMouseButtonState(MouseEvent.BUTTON1)){
-                butt.setTexture(new Point((int) (butt.getImagePos().getX() + 173), 1), new Point(174, 89), path);
-            }
-            else{
-                System.out.println("JUST HOVERING");
-            }
-            butt.setImagePos(getPos);
-            return true;
-        }
-        return false;
 
+            butt.setTexture(new Point((int) (butt.getImagePos().getX() + 174), 0), new Point(173, 87), path);
+
+//            If button clicked
+            if(game.getMouseManager().getMouseButtonState(MouseEvent.BUTTON1)){
+//              Animate button
+                butt.setTexture(new Point((int) (butt.getImagePos().getX() + 175), 0), new Point(173, 87), path);
+                butt.setImagePos(getPos);
+                return true;
+            }
+
+            butt.setImagePos(getPos);
+            return false;
+        }
+
+//        butt.setImagePos(getPos);
+
+//        butt.setTexture(new Point((int) (butt.getImagePos().getX()), 0), new Point(173, 87), path);
+        return false;
     }
 }
-
-//            System.out.println(name);
-//            System.out.println("QWEQWEQWE" + getPos);
-//            System.out.println("ASDASDA" + butt.getImagePos());
-
-
-//            System.out.println("VZZCZXC" + butt.getImagePos());
